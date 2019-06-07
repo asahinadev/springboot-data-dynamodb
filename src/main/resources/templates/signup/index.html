@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="h-100">
+
+<head>
+<meta charset="UTF-8">
+
+<th:block th:include="layout::head" />
+
+</head>
+
+<body class="h-100">
+	<header>
+		<nav class="navbar navbar-expand navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">サインアップ</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hNavi" aria-controls="hNavi" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</nav>
+	</header>
+
+	<section class="container pt-5">
+
+		<div class="mx-auto w-50 mb-3" th:if="${message}">
+			<div class="alert alert-warning" th:text="${message}">エラーメッセージ</div>
+		</div>
+
+		<div class="row">
+			<div class="col-3"></div>
+			<div class="col">
+				<div class="card">
+					<form class="card-body needs-validation" novalidate th:object="${form}" method="POST" th:action="@{/signup}">
+
+						<div class="form-group form-row">
+							<label class="col-4" for="username">アカウント</label>
+							<div class="col">
+								<input class="form-control" th:field="*{username}" th:errorclass="is-invalid">
+								<div class="invalid-feedback" th:each="err,st : ${#lists.sort(#fields.errors('username'))}" th:text="${err}" th:if="${st.index == 0}">エラーメッセージが出力されます</div>
+							</div>
+						</div>
+
+						<div class="form-group form-row">
+							<label class="col-4" for="email">メールアドレス</label>
+							<div class="col">
+								<input class="form-control" th:field="*{email}" th:errorclass="is-invalid">
+								<div class="invalid-feedback" th:each="err,st : ${#lists.sort(#fields.errors('email'))}" th:text="${err}" th:if="${st.index == 0}">エラーメッセージが出力されます</div>
+							</div>
+						</div>
+
+						<div class="form-group form-row">
+							<label class="col-4" for="password">パスワード</label>
+							<div class="col">
+								<input class="form-control" th:field="*{password}" th:errorclass="is-invalid">
+                                <div class="invalid-feedback" th:each="err,st : ${#lists.sort(#fields.errors('password'))}" th:text="${err}" th:if="${st.index == 0}">エラーメッセージが出力されます</div>
+							</div>
+						</div>
+
+						<div class="col-12">
+							<button class="btn btn-primary btn-block btn-lg">サインアップ</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="list-group">
+					<a th:href="@{/login}" class="list-group-item">ログイン</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+
+</body>
+
+</html>

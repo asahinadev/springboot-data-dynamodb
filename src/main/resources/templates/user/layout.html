@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="h-100">
+
+<head>
+<meta charset="UTF-8">
+
+<th:block th:include="layout::head" />
+
+</head>
+
+<body class="h-100">
+
+	<div class="card" th:fragment="form(buttonText, action)">
+		<form class="card-body needs-validation" novalidate method="POST" th:action="${action}" th:object="${form}">
+
+			<div class="form-group form-row">
+				<label class="col-4" for="username">アカウント</label>
+				<div class="col">
+					<input class="form-control" th:field="*{username}" th:errorclass="is-invalid">
+					<div class="invalid-feedback" th:each="err,st : ${#lists.sort(#fields.errors('username'))}" th:text="${err}" th:if="${st.index == 0}">エラーメッセージが出力されます</div>
+				</div>
+			</div>
+			<div class="form-group form-row">
+				<label class="col-4" for="password">パスワード</label>
+				<div class="col">
+					<input type="text" class="form-control" th:field="*{password}" th:errorclass="is-invalid" th:type="password">
+					<div class="invalid-feedback" th:each="err,st : ${#lists.sort(#fields.errors('password'))}" th:text="${err}" th:if="${st.index == 0}">エラーメッセージが出力されます</div>
+				</div>
+			</div>
+			<div class="form-group form-row">
+				<label class="col-4" for="email">メールアドレス</label>
+				<div class="col">
+					<input class="form-control" th:field="*{email}" th:errorclass="is-invalid">
+					<div class="invalid-feedback" th:each="err,st : ${#lists.sort(#fields.errors('email'))}" th:text="${err}" th:if="${st.index == 0}">エラーメッセージが出力されます</div>
+				</div>
+			</div>
+
+			<hr>
+
+			<div class="form-group form-row mt-5">
+				<button class="btn btn-primary btn-block btn-lg" th:text="${buttonText}">ボタン</button>
+			</div>
+		</form>
+	</div>
+
+	<div th:fragment="sNavi(active, user)">
+
+		<div th:object="${user}" class="list-group">
+			<!--  -->
+			<a class="list-group-item" th:classappend="${active == 'index' ? 'active disabled' : ''}" th:href="@{/user}">一覧画面</a>
+			<!--  -->
+			<a class="list-group-item" th:classappend="${active == 'create' ? 'active disabled' : ''}" th:href="@{/user/create}">新規登録</a>
+			<!--  -->
+			<a class="list-group-item" th:if="*{id}" th:classappend="${active == 'modify' ? 'active disabled' : ''}" th:href="@{/user/modify/{id}(id=*{id})}">変更画面</a>
+			<!--  -->
+			<a class="list-group-item" th:if="*{id}" th:classappend="${active == 'view' ? 'active disabled' : ''}" th:href="@{/user/view/{id}(id=*{id})}">確認画面</a>
+			<!--  -->
+			<a class="list-group-item list-group-item-danger" th:if="*{id}" th:classappend="${active == 'delete' ? 'active disabled' : ''}"
+				th:href="@{/user/delete/{id}(id=*{id})}">削除画面</a>
+		</div>
+	</div>
+</body>

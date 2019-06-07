@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="h-100">
+
+<head>
+<meta charset="UTF-8">
+
+<th:block th:include="layout::head" />
+
+<style>
+#users tr>th {
+	text-align: cen;
+}
+
+#users tr>th:nth-child(1) {
+	width: 100px;
+}
+
+#users tr>th:nth-child(2) {
+	width: auto;
+}
+
+#users tr>th:nth-child(3) {
+	width: 50px;
+}
+
+#users tr>th:nth-child(4) {
+	width: 100px;
+}
+
+#users tr>th:nth-child(5) {
+	width: 120px;
+}
+</style>
+
+</head>
+
+<body class="h-100">
+
+	<header th:replace="layout::header('ユーザー管理', 'users')">
+		<!-- 共通レイアウト -->
+	</header>
+
+	<section class="container mx-auto pt-5">
+
+		<div class="card">
+			<div class="card-body">
+				<h2 class="card-title">ユーザー一覧</h2>
+
+				<div th:replace="layout::alert_success(${success})">処理成功時のメッセージ</div>
+				<div th:replace="layout::alert_danger(${message})">処理失敗時のメッセージ</div>
+
+				<div class="row">
+					<div class="col-8">
+						<table class="table table-bordered table-sm" id="users">
+							<thead>
+								<tr>
+									<th>アカウント</th>
+									<th>メール</th>
+									<th>有効</th>
+									<th>権限</th>
+									<th>アクション</th>
+								</tr>
+							</thead>
+							<tbody th:each="user : ${users}" th:object="${user}">
+								<tr>
+									<td class="text-left" th:text="*{username}">USERNAME</td>
+									<td class="text-left" th:text="*{email}">EMAIL</td>
+									<td class="text-center" th:text="*{enabled}">ACCEPT</td>
+									<td class="text-center" th:text="*{authorities}">ROLE</td>
+									<td>
+										<div>
+											<!--  -->
+											<a class="btn btn-sm btn-primary fas fa-edit p-1" th:href="@{/user/modify/{id}(id=*{id})}" title="編集"></a>
+											<!--  -->
+											<a class="btn btn-sm btn-info fas fa-address-card p-1" th:href="@{/user/view/{id}(id=*{id})}" title="確認"></a>
+											<!--  -->
+											<a class="btn btn-sm btn-danger fas fa-trash p-1" th:href="@{/user/delete/{id}(id=*{id})}" title="削除"></a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="col">
+						<div th:replace="user/layout::sNavi('index', ${user})">
+							<!--  -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+
+com:
+  example:
+    spring:
+      config:
+        dynamodb:
+          end-point: "http://192.168.99.100:32769"
+
+spring:
+  thymeleaf:
+    cache: false
+    enabled: true
+    encoding: UTF-8
+    
+  messages:
+    basename: "i18n/messages"
+    cache-duration: -1
+    encoding: UTF-8
+    
+  jackson:    date-format: "yyyy-MM-dd'T'HH:mm:ss"
+    serialization:      write-dates-as-timestamps: false
+
+logging:  level:
+    root: OFF    com.example: DEBUG
+    org.springframework: INFO
+    com.amazonaws: DEBUG

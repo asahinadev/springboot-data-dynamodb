@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "com.example.spring.config.dynamodb",
+      "type": "com.example.spring.config.DynamodbProperties",
+      "sourceType": "com.example.spring.config.DynamodbProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "com.example.spring.config.dynamodb.end-point",
+      "type": "java.lang.String",
+      "sourceType": "com.example.spring.config.DynamodbProperties"
+    },
+    {
+      "name": "com.example.spring.config.dynamodb.region",
+      "type": "java.lang.String",
+      "sourceType": "com.example.spring.config.DynamodbProperties"
+    }
+  ],
+  "hints": []
+}

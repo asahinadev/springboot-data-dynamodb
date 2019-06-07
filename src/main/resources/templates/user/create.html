@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="h-100">
+
+<head>
+<meta charset="UTF-8">
+
+<th:block th:include="layout::head" />
+
+</head>
+
+<body class="h-100">
+
+	<header th:replace="layout::header('ユーザー管理', 'users')">
+		<!-- 共通レイアウト -->
+	</header>
+
+	<section class="container mx-auto pt-5">
+
+		<div class="card">
+			<div class="card-body">
+				<h2 class="card-title">ユーザー登録</h2>
+
+				<div th:replace="layout::alert_success(${success})">処理成功時のメッセージ</div>
+				<div th:replace="layout::alert_danger(${message})">処理失敗時のメッセージ</div>
+
+				<div class="row">
+					<div class="col-8">
+						<div class="card" th:replace="user/layout::form('登録', @{/user/create})">
+							<!--  -->
+						</div>
+					</div>
+					<div class="col">
+						<div th:replace="user/layout::sNavi('create', ${user})">
+							<!--  -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
