@@ -30,5 +30,3 @@ HELP.md
 .vscode/
 /bin/
 /gradle/
-/gradlew
-/gradlew.bat
