@@ -67,5 +67,9 @@ eclipse {
 		natures 'org.thymeleaf.extras.eclipse.core.ThymeleafNature'
 		natures 'org.eclipse.buildship.core.gradleprojectnature'
 		natures 'org.eclipse.jdt.core.javanature'
+
+		buildCommand 'org.eclipse.jdt.core.javabuilder'
+		buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
+		buildCommand 'org.thymeleaf.extras.eclipse.core.ThymeleafBuilder'
 	}
 }
