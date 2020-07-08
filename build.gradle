@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id "com.avast.gradle.docker-compose" version "0.12.1"
 	id 'java'
+	id 'eclipse'
 }
 
 group = 'com.example.spring.jwt'
@@ -61,45 +62,10 @@ compileTestJava {
     options.encoding = 'UTF-8'
 }
 
-tasks.eclipse.doFirst {
-
-    File buildship = file(".settings/org.eclipse.buildship.core.prefs")
-    delete buildship
-    buildship.append('''# create by build.gradle
-
-build.commands=org.eclipse.jdt.core.javabuilder,org.eclipse.wst.common.project.facet.core.builder,org.eclipse.wst.validation.validationbuilder
-connection.arguments=
-connection.gradle.distribution=GRADLE_DISTRIBUTION(WRAPPER)
-connection.java.home=null
-connection.jvm.arguments=
-connection.project.dir=
-derived.resources=.gradle,build
-eclipse.preferences.version=1
-natures=org.eclipse.jdt.core.javanature,org.eclipse.wst.common.project.facet.core.nature,org.eclipse.wst.common.modulecore.ModuleCoreNature,org.eclipse.jem.workbench.JavaEMFNature
-project.path=\\:
-
-'''. stripIndent())
-
-    File resources= file(".settings/org.eclipse.core.resources.prefs")
-    delete resources 
-    resources.append('''# creatae by build.gradle
-
-eclipse.preferences.version=1
-encoding/<project>=UTF-8
-
-'''. stripIndent())
-
-    File apt= file(".settings/org.eclipse.jdt.apt.core.prefs")
-    delete apt 
-    apt.append('''# creatae by build.gradle
-
-eclipse.preferences.version=1
-org.eclipse.jdt.apt.aptEnabled=true
-org.eclipse.jdt.apt.genSrcDir=.apt_generated
-org.eclipse.jdt.apt.genTestSrcDir=.apt_generated_tests
-org.eclipse.jdt.apt.reconcileEnabled=true
-
-'''. stripIndent())
-
+eclipse {
+	project {
+		natures 'org.thymeleaf.extras.eclipse.core.ThymeleafNature'
+		natures 'org.eclipse.buildship.core.gradleprojectnature'
+		natures 'org.eclipse.jdt.core.javanature'
+	}
 }
-
