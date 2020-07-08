@@ -3,4 +3,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'spring-demo-dynamodb'
+rootProject.name = 'springboot-data-dynamodb'
