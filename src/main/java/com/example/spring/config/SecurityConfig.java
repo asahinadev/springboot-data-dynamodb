@@ -1,26 +1,23 @@
 package com.example.spring.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.context.annotation.*;
+import org.springframework.security.config.annotation.authentication.builders.*;
+import org.springframework.security.config.annotation.web.builders.*;
+import org.springframework.security.config.annotation.web.configuration.*;
+import org.springframework.security.crypto.bcrypt.*;
+import org.springframework.security.crypto.password.*;
+import org.springframework.security.web.util.matcher.*;
 
-import com.example.spring.service.UserService;
+import com.example.spring.service.*;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.slf4j.*;
 
 @Slf4j
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig
-		extends WebSecurityConfigurerAdapter {
+	extends WebSecurityConfigurerAdapter {
 
 	public static final String HOME_PAGE = "/";
 
@@ -60,7 +57,13 @@ public class SecurityConfig
 
 		// 標準
 		super.configure(web);
-		web.ignoring().antMatchers("/webjars/**", "/error/**", "/css/**", "/js/**", "/image/**", "/favicon.ico");
+		web.ignoring().antMatchers(
+				"/webjars/**",
+				"/error/**",
+				"/css/**",
+				"/js/**",
+				"/image/**",
+				"/favicon.ico");
 
 	}
 

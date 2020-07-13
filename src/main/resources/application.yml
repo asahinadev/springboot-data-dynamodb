@@ -4,7 +4,7 @@ com:
     spring:
       config:
         dynamodb:
-          end-point: "http://192.168.99.100:32769"
+          end-point: "http://localhost:8000"
 
 spring:
   thymeleaf:
